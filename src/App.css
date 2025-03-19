@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+/* Header 스타일 */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* 항상 위에 표시되도록 설정 */
+  background-color: #333;
+  color: white;
+}
+
+/* Carousel 스타일 */
+.cover-carousel {
+  margin-top: 80px; /* Header 높이만큼 여백 추가 */
+  z-index: 1;
+  position: relative;
+}
+
+/* About Section */
+.about {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Reviews Section */
+.reviews {
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+/* Footer 스타일 */
+footer {
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
