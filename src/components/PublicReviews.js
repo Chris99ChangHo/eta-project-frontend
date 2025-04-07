@@ -54,3 +54,7 @@ const PublicReviews = ({ location }) => {
 };
 
 export default PublicReviews;
+
+// 한국어: 네이버 로그인 성공 페이지 추가 및 헤더에 로그인/로그아웃 버튼 기능 구현
+// 영어:  Added Naver login success page and implemented login/logout button functionality in the header
+
