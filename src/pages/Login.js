@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../styles/Login.css"; // 스타일 분리 (선택)
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -7,6 +8,11 @@ function Login() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setErrorMsg("이메일과 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3001/api/auth/login", {
         email,
@@ -26,58 +32,34 @@ function Login() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="login-container">
       <h2>로그인</h2>
-
-      {errorMsg && (
-        <div style={{ color: "red", marginBottom: "15px" }}>{errorMsg}</div>
-      )}
 
       <input
         type="email"
         placeholder="이메일"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        style={{
-          display: "block",
-          margin: "10px auto",
-          padding: "10px",
-          width: "250px",
-        }}
+        className="login-input"
       />
+
       <input
         type="password"
         placeholder="비밀번호"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        style={{
-          display: "block",
-          margin: "10px auto",
-          padding: "10px",
-          width: "250px",
-        }}
+        className="login-input"
       />
-      <button
-        onClick={handleLogin}
-        style={{ padding: "10px 20px", margin: "10px", cursor: "pointer" }}
-      >
+
+      {errorMsg && <div className="error-message">{errorMsg}</div>}
+
+      <button className="login-button" onClick={handleLogin}>
         로그인
       </button>
 
-      <div style={{ marginTop: "20px" }}>
+      <div className="sns-login-wrapper">
         <a href="http://localhost:3001/api/auth/naver">
-          <button
-            style={{
-              padding: "10px 20px",
-              margin: "5px",
-              backgroundColor: "#03C75A",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Naver 로그인
-          </button>
+          <button className="naver-button">Naver 로그인</button>
         </a>
       </div>
     </div>

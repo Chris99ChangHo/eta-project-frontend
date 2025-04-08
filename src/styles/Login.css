@@ -1,0 +1,57 @@
+.login-container {
+    text-align: center;
+    margin: 80px auto;
+    width: 300px;
+  }
+  
+  .login-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .naver-button {
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #03C75A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .naver-button:hover {
+    background-color: #02a34c;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .sns-login-wrapper {
+    margin-top: 20px;
+  }
+  
