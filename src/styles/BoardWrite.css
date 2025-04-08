@@ -1,0 +1,97 @@
+.board-write-container {
+  max-width: 800px;
+  margin: 5rem auto 3rem auto;
+  padding: 2rem;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.board-write-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.board-write-input,
+.board-write-textarea,
+.board-write-select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.board-write-textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+/* ✅ 액션 전체 영역 */
+.board-write-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* ✅ 체크박스와 버튼 묶음 정렬 */
+.board-write-actions label {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ✅ 버튼 묶음 수평 정렬 */
+.board-write-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ✅ 공통 버튼 스타일 */
+.board-write-button {
+  padding: 0.6rem 1.4rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.board-write-button:hover {
+  background-color: #218838;
+}
+
+/* ✅ 목록으로 버튼 스타일 */
+.board-write-cancel {
+  background-color: #6c757d;
+}
+.board-write-cancel:hover {
+  background-color: #5a6268;
+}
+
+/* ✅ 반응형 대응 */
+@media (max-width: 600px) {
+  .board-write-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .board-write-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .board-write-button {
+    width: 100%;
+  }
+}

@@ -48,6 +48,9 @@ const BoardList = () => {
 
   return (
     <div className="board-container">
+      <div className="board-header">
+        <Link to="/" className="home-button">🏠 홈으로</Link>
+      </div>
       <h2 className="board-title">📌 게시판</h2>
 
       <div className="board-search">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/BoardForm.css";
+import "../../styles/BoardWrite.css";
 
 const BoardWrite = () => {
   const [title, setTitle] = useState("");
@@ -54,34 +54,35 @@ const BoardWrite = () => {
   };
 
   return (
-    <div className="board-form-container">
-      <h2 className="board-form-title">글 작성</h2>
+    <div className="board-write-container">
+      <h2 className="board-write-title">글 작성</h2>
       <input
-        className="board-form-input"
+        className="board-write-input"
         placeholder="제목"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        className="board-form-textarea"
+        className="board-write-textarea"
         placeholder="내용"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
 
       {/* ✅ 카테고리 선택 */}
-      <div className="board-form-category">
+      <div className="board-write-category">
         <label>
-          카테고리:
+          카테고리:&nbsp;&nbsp;
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="general">일반</option>
             <option value="notice">공지사항</option>
-            <option value="qna">질문답변</option>
+            <option value="qna">Q&A</option>
           </select>
         </label>
       </div>
 
-      <div className="board-form-actions">
+      {/* ✅ 공지글 여부 + 작성 버튼 */}
+      <div className="board-write-actions">
         {user?.role === "admin" && (
           <label>
             <input
@@ -92,9 +93,21 @@ const BoardWrite = () => {
             공지글로 설정
           </label>
         )}
-        <button className="board-form-button" onClick={handleSubmit}>
-          작성하기
-        </button>
+
+        <div className="board-write-buttons">
+          <button
+            className="board-write-button board-write-cancel"
+            onClick={() => navigate("/board")}
+          >
+            목록으로
+          </button>
+          <button
+            className="board-write-button"
+            onClick={handleSubmit}
+          >
+            작성하기
+          </button>
+        </div>
       </div>
     </div>
   );

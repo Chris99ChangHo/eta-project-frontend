@@ -60,6 +60,7 @@ const BoardDetail = () => {
         <div className="board-detail-actions">
           <Link to={`/board/edit/${post._id}`}>✏️ 수정</Link>
           <button onClick={handleDelete}>🗑 삭제</button>
+          <button onClick={() => navigate("/board")}>📋 목록으로</button>
         </div>
       )}
     </div>
