@@ -54,8 +54,8 @@ const Header = () => {
             {/* 각 섹션으로 부드럽게 이동 */}
             <Nav.Link onClick={() => scrollToSection("about")}>About</Nav.Link>
             <Nav.Link onClick={() => scrollToSection("reviews")}>Reviews</Nav.Link>
-            <Nav.Link as={Link} to="/board">Board</Nav.Link>
             <Nav.Link onClick={() => scrollToSection("footer")}>Contact</Nav.Link>
+            <Nav.Link as={Link} to="/board">Board</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
             {isLoggedIn ? (

@@ -6,30 +6,44 @@ const BoardList = () => {
   const [posts, setPosts] = useState([]);
   const [notices, setNotices] = useState([]);
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState(""); // ✅ category 상태 추가
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const fetchPosts = async () => {
     try {
-      const res = await fetch(`/api/posts?search=${search}`);
+      let endpoint = `/api/board?`;
+  
+      if (search.trim()) endpoint += `search=${search}&`;
+      if (category) endpoint += `category=${category}`;
+  
+      const res = await fetch(endpoint);
       const data = await res.json();
-
-      // 최신순 정렬 후 상위 3개를 공지로 분리
-      const sorted = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      const top3 = sorted.slice(0, 3);
-      const rest = sorted.slice(3);
-
-      setNotices(top3);
-      setPosts(rest);
+  
+      const noticePosts = data
+        .filter((post) => post.isNotice)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 3);
+  
+      const normalPosts = data
+        .filter((post) => !post.isNotice)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
+      setNotices(noticePosts);
+      setPosts(normalPosts);
     } catch (error) {
       console.error("게시글 불러오기 실패:", error);
     }
-  };
+  };  
 
   useEffect(() => {
     fetchPosts();
+    setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
-  const handleSearch = () => {
-    fetchPosts();
+  const handleSearch = () => fetchPosts();
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearch();
   };
 
   return (
@@ -42,22 +56,36 @@ const BoardList = () => {
           placeholder="검색어 입력"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
+
+        {/* ✅ 카테고리 선택 */}
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ marginLeft: "10px" }}
+        >
+          <option value="">전체</option>
+          <option value="general">일반</option>
+          <option value="notice">공지</option>
+          <option value="qna">Q&A</option>
+        </select>
+
         <button onClick={handleSearch}>검색</button>
       </div>
 
-      <div className="board-actions">
-        <Link to="/board/write" className="write-button">✏️ 글쓰기</Link>
-      </div>
+      {isLoggedIn && (
+        <div className="board-actions">
+          <Link to="/board/write" className="write-button">✏️ 글쓰기</Link>
+        </div>
+      )}
 
-      {/* 🔔 공지사항 영역 */}
       {notices.length > 0 && (
         <ul className="notice-list">
           {notices.map((post) => (
             <li key={post._id} className="notice-item">
               <Link to={`/board/${post._id}`}>
-                <strong>[공지]</strong> {post.title} - {post.author} (
-                {new Date(post.createdAt).toLocaleDateString()}) 조회 {post.views}
+                <strong>[공지]</strong> {post.title}
               </Link>
             </li>
           ))}
@@ -67,10 +95,8 @@ const BoardList = () => {
       <ul className="post-list">
         {posts.map((post) => (
           <li key={post._id} className="post-item">
-            <Link to={`/board/${post._id}`}>
-              {post.title} - {post.author} (
-              {new Date(post.createdAt).toLocaleDateString()}) 조회 {post.views}
-            </Link>
+            <Link to={`/board/${post._id}`}>{post.title}</Link>
+            <span className="post-meta"> - {post.author?.name} | {post.views} 조회</span>
           </li>
         ))}
       </ul>

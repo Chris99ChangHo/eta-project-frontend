@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../styles/Login.css"; // 스타일 분리 (선택)
+import "../styles/Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,12 +19,15 @@ function Login() {
         password,
       });
 
+      console.log("✅ 서버 응답:", res.data);
+
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert(`${res.data.user.name}님, 환영합니다!`);
       window.location.href = "/";
     } catch (err) {
+      console.error("❌ 로그인 실패 응답:", err.response);
       const message =
         err.response?.data?.message || "로그인 중 오류가 발생했습니다.";
       setErrorMsg(message);

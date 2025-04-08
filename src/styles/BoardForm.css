@@ -1,0 +1,58 @@
+.board-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .board-form-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .board-form-input,
+  .board-form-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .board-form-textarea {
+    height: 200px;
+    resize: vertical;
+  }
+  
+  .board-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .board-form-actions label {
+    font-size: 0.95rem;
+  }
+  
+  .board-form-button {
+    padding: 0.5rem 1.2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .board-form-category {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .board-form-category select {
+    margin-left: 8px;
+    padding: 4px;
+  }
